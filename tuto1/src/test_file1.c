@@ -9,6 +9,7 @@
 
 #include "file1.h"
 #include "file2.h"
+#define DEBUG
 
 void test_f1__1(void **state)
 {
@@ -22,7 +23,15 @@ void test_f1__1(void **state)
 
 int fa(int x)
 {
-  return mock();
+#ifdef DEBUG
+    printf("input_value for fa: %d\n", x);
+#endif
+    check_expected(x);
+    int mock_ret = (int)mock();
+#ifdef DEBUG
+    printf("output value from fa: %d\n", mock_ret);
+#endif
+    return mock_ret;
 }
 
 
@@ -34,29 +43,114 @@ void test_f2__1(void **state)
     (void) state; /* unused */
     int ret;
 
+    int input = 1;
+    expect_value(fa, x, input);
+    expect_value(fa, x, input+1);
+
     will_return(fa, 0);
     will_return(fa, 15);
-    ret = f2(1);
+
+    ret = f2(input);
     assert_int_equal(0, ret);
 
 }
 
+void test_f2__3(void **state)
+{
+    (void) state; /* unused */
+    int ret;
+
+
+    int input = 1;
+    expect_value(fa, x, input);
+    expect_value(fa, x, input+1);
+
+    will_return(fa, 0);
+    will_return(fa, 5);
+    ret = f2(input);
+    assert_int_equal(ret, -2);
+
+
+    expect_value(fa, x, input);
+    expect_value(fa, x, input+1);
+
+    will_return(fa, 0);
+    will_return(fa, 9);
+    ret = f2(input);
+    assert_int_equal(ret, -2);
+
+    expect_value(fa, x, input);
+    expect_value(fa, x, input+1);
+
+    will_return(fa, 0);
+    will_return(fa, 20);
+    ret = f2(input);
+    assert_int_equal(ret, -2);
+
+    expect_value(fa, x, input);
+    expect_value(fa, x, input+1);
+
+    will_return(fa, 0);
+    will_return(fa, 28);
+    ret = f2(input);
+    assert_int_equal(ret, -2);
+}
+
+// test (EX2)
 void test_f2__2(void **state)
 {
     (void) state; /* unused */
     int ret;
 
+    int input = 1;
+    expect_value(fa, x, input);
+    will_return(fa, 1);
+
+    ret = f2(input);
+    assert_int_equal(-1, ret);
+}
+
+void test_f2__4(void **state)
+{
+    (void) state; /* unused */
+    int ret;
+
+    int input = 1;
+    expect_value(fa, x, input);
+    expect_value(fa, x, input+1);
+
     will_return(fa, 0);
-    will_return(fa, 2);
-    ret = f2(1);
-    assert_int_equal(-2, ret);
+    will_return(fa, 10);
+    ret = f2(input);
+    assert_int_equal(ret, 0);
+
+
+    expect_value(fa, x, input);
+    expect_value(fa, x, input+1);
+
+    will_return(fa, 0);
+    will_return(fa, 17);
+    ret = f2(input);
+    assert_int_equal(ret, 0);
+
+    expect_value(fa, x, input);
+    expect_value(fa, x, input+1);
+
+    will_return(fa, 0);
+    will_return(fa, 19);
+    ret = f2(input);
+    assert_int_equal(ret, 0);
 
 }
+
+
 
 const struct CMUnitTest do_something_tests[] = {
     cmocka_unit_test(test_f1__1),
     cmocka_unit_test(test_f2__1),
     cmocka_unit_test(test_f2__2),
+    cmocka_unit_test(test_f2__3),
+    cmocka_unit_test(test_f2__4),
 };
 
 
