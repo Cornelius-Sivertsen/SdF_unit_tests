@@ -1,0 +1,12 @@
+[==========] do_something_tests: Running 5 test(s).
+[ RUN      ] test_f1__1
+[       OK ] test_f1__1
+[ RUN      ] test_f2__1
+[       OK ] test_f2__1
+[ RUN      ] test_f2__2
+[       OK ] test_f2__2
+[ RUN      ] test_f2__3
+[       OK ] test_f2__3
+[ RUN      ] test_f2__4
+[       OK ] test_f2__4
+[==========] do_something_tests: 5 test(s) run.

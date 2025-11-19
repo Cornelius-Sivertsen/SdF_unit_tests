@@ -1,0 +1,46 @@
+[==========] do_something_tests: Running 5 test(s).
+[ RUN      ] test_f1__1
+[       OK ] test_f1__1
+[ RUN      ] test_f2__1
+input_value for fa: 1
+output value from fa: 0
+input_value for fa: 2
+output value from fa: 15
+[       OK ] test_f2__1
+[ RUN      ] test_f2__2
+input_value for fa: 1
+output value from fa: 1
+[       OK ] test_f2__2
+[ RUN      ] test_f2__3
+input_value for fa: 1
+output value from fa: 0
+input_value for fa: 2
+output value from fa: 5
+input_value for fa: 1
+output value from fa: 0
+input_value for fa: 2
+output value from fa: 9
+input_value for fa: 1
+output value from fa: 0
+input_value for fa: 2
+output value from fa: 20
+input_value for fa: 1
+output value from fa: 0
+input_value for fa: 2
+output value from fa: 28
+[       OK ] test_f2__3
+[ RUN      ] test_f2__4
+input_value for fa: 1
+output value from fa: 0
+input_value for fa: 2
+output value from fa: 10
+input_value for fa: 1
+output value from fa: 0
+input_value for fa: 2
+output value from fa: 17
+input_value for fa: 1
+output value from fa: 0
+input_value for fa: 2
+output value from fa: 19
+[       OK ] test_f2__4
+[==========] do_something_tests: 5 test(s) run.
